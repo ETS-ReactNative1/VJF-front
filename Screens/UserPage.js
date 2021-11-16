@@ -18,7 +18,7 @@ function UserPage(props) {
 		async function loadUser() {
 			try {
 				var rawResponse = await fetch(
-					`https://vitejaifaim-master-i57witqbae0.herokuapp.com/users/me/${token}`
+					`https://vite-jai-faim.herokuapp.com/users/me/${token}`
 				)
 				var response = await rawResponse.json()
 				setUser(response.userInfo)
@@ -43,7 +43,7 @@ function UserPage(props) {
 					body: JSON.stringify(dataToSend),
 				}
 				const data = await fetch(
-					`https://vitejaifaim-master-i57witqbae0.herokuapp.com/users/update-diet`,
+					`https://vite-jai-faim.herokuapp.com/users/update-diet`,
 					requestOptions
 				)
 				const result = await data.json()
@@ -87,7 +87,6 @@ function UserPage(props) {
 				<Text>{user.firstName} </Text>
 				<Button
 					type="clear"
-					onPress={() => console.log('bonjour')}
 					icon={<Ionicons size={25} name="create-outline" color="#FFC901" />}
 				/>
 			</Card>
@@ -96,7 +95,6 @@ function UserPage(props) {
 				<Text>{user.email} </Text>
 				<Button
 					type="clear"
-					onPress={() => console.log('bonjour')}
 					icon={<Ionicons size={25} name="create-outline" color="#FFC901" />}
 				/>
 			</Card>
@@ -105,7 +103,6 @@ function UserPage(props) {
 				<Text>{user.phone} </Text>
 				<Button
 					type="clear"
-					onPress={() => console.log('bonjour')}
 					icon={<Ionicons size={25} name="create-outline" color="#FFC901" />}
 				/>
 			</Card>
@@ -115,7 +112,6 @@ function UserPage(props) {
 				<Text>{props.address} </Text>
 				<Button
 					type="clear"
-					onPress={() => console.log('bonjour')}
 					icon={<Ionicons size={25} name="create-outline" color="#FFC901" />}
 				/>
 			</Card>

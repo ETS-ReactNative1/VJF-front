@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { ScrollView, Image, TouchableOpacity, View, StyleSheet } from 'react-native'
+import {
+	ScrollView,
+	Image,
+	TouchableOpacity,
+	View,
+	StyleSheet,
+} from 'react-native'
 import { Button, Text, Card } from 'react-native-elements'
 import TopBar from '../Components/TopBar'
 import { Ionicons } from '@expo/vector-icons'
@@ -21,7 +27,7 @@ function Allergies(props) {
 	useEffect(() => {
 		async function loadAllergies() {
 			var rawResponse = await fetch(
-				`https://vitejaifaim-master-i57witqbae0.herokuapp.com/users/allergies/${token}`
+				`https://vite-jai-faim.herokuapp.com/users/allergies/${token}`
 			)
 			var response = await rawResponse.json()
 
@@ -124,7 +130,7 @@ si ces conditions sont remplies allergyExist passe a true*/
 		setAllergies(allergyFilter)
 		props.removeAllergy(allergy)
 		var rawResponse = await fetch(
-			`https://vitejaifaim-master-i57witqbae0.herokuapp.com/users/delallergies/${token}/${allergy}`,
+			`https://vite-jai-faim.herokuapp.com/users/delallergies/${token}/${allergy}`,
 
 			{
 				method: 'DELETE',
@@ -136,7 +142,6 @@ si ces conditions sont remplies allergyExist passe a true*/
 
 	async function handleAllergies(boolean) {
 		setOverlay(boolean)
-		console.log('props', props.allergies)
 
 		const dataToUpdate = {
 			allergies: props.allergies,
@@ -147,7 +152,7 @@ si ces conditions sont remplies allergyExist passe a true*/
 			body: JSON.stringify(dataToUpdate),
 		}
 		const data = await fetch(
-			`https://vitejaifaim-master-i57witqbae0.herokuapp.com/users/update-me/${token}`,
+			`https://vite-jai-faim.herokuapp.com/users/update-me/${token}`,
 			requestOptions
 		)
 		const result = await data.json()
@@ -170,11 +175,14 @@ si ces conditions sont remplies allergyExist passe a true*/
 	return (
 		<View style={styles.container}>
 			<TopBar navigation={props.navigation} />
-			<Text h3 style={{ color: '#F2A902', textAlign: 'center', marginTop: "4%" }}>Allergies</Text>
+			<Text
+				h3
+				style={{ color: '#F2A902', textAlign: 'center', marginTop: '4%' }}
+			>
+				Allergies
+			</Text>
 			<ScrollView>
-				<ScrollView>
-					{allergiesRender}
-				</ScrollView>
+				<ScrollView>{allergiesRender}</ScrollView>
 				<Overlay
 					isVisible={overlay}
 					onBackdropPress={() => setOverlay(false)}
@@ -201,7 +209,10 @@ si ces conditions sont remplies allergyExist passe a true*/
 						<MyCheckbox title="Lupin" isAllergy={true} />
 						<MyCheckbox title="Sulfites" isAllergy={true} />
 
-						<NextButton title="VALIDER" onPress={() => handleAllergies(false)} />
+						<NextButton
+							title="VALIDER"
+							onPress={() => handleAllergies(false)}
+						/>
 					</ScrollView>
 				</Overlay>
 				<TouchableOpacity onPress={() => handleAllergies(true)}>
@@ -211,7 +222,7 @@ si ces conditions sont remplies allergyExist passe a true*/
 					/>
 				</TouchableOpacity>
 			</ScrollView>
-		</View >
+		</View>
 	)
 }
 
@@ -232,7 +243,7 @@ const styles = StyleSheet.create({
 		marginBottom: 10,
 		marginTop: 10,
 		textAlign: 'center',
-	}
+	},
 })
 
 function mapDispatchToProps(dispatch) {

@@ -15,7 +15,7 @@ const LastOrder = props => {
 		const fetchUser = async () => {
 			try {
 				const data = await fetch(
-					`https://vitejaifaim-master-i57witqbae0.herokuapp.com/orders/recap/${token}`
+					`https://vite-jai-faim.herokuapp.com/orders/recap/${token}`
 				)
 				const lastOrder = await data.json()
 
@@ -29,14 +29,14 @@ const LastOrder = props => {
 				setMeal(lastOrder.mealName)
 				setRestaurant(lastOrder.restaurant)
 				props.setMealId(lastOrder.mealId)
-			} catch (err) { }
+			} catch (err) {}
 		}
 		if (token) {
 			fetchUser()
 		} else {
 			props.setHasOrder(false)
 		}
-		return () => { }
+		return () => {}
 	}, [isFocused])
 
 	return (

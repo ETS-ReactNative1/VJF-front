@@ -39,7 +39,7 @@ function Mood(props) {
 		addressComplete = numRue + ',' + ville + ',' + codePostal
 		props.addressHandle(addressComplete)
 		await fetch(
-			`https://vitejaifaim-master-i57witqbae0.herokuapp.com/users/update-useraddress/${token}`,
+			`https://vite-jai-faim.herokuapp.com/users/update-useraddress/${token}`,
 			{
 				method: 'POST',
 				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -50,13 +50,12 @@ function Mood(props) {
 		setAddressIsChanged(true)
 	}
 	const getFromFavorites = async () => {
-
 		try {
 			const token = props.token
 			if (!token)
 				setErrorMsg('Connectez-vous pour commandez votre repas surprise !')
 			const data = await fetch(
-				`https://vitejaifaim-master-i57witqbae0.herokuapp.com/orders/makeorderinfav/${token}`
+				`https://vite-jai-faim.herokuapp.com/orders/makeorderinfav/${token}`
 			)
 			const formatedData = await data.json()
 
@@ -70,11 +69,10 @@ function Mood(props) {
 					})
 				}
 			}
-		} catch (err) { }
+		} catch (err) {}
 	}
 
 	const getTheSupriseMeal = async () => {
-		console.log('getTheSupriseMeal')
 		try {
 			const token = props.token
 			if (!token)
@@ -92,11 +90,10 @@ function Mood(props) {
 				body: JSON.stringify(dataToSend),
 			}
 			const data = await fetch(
-				`https://vitejaifaim-master-i57witqbae0.herokuapp.com/orders/recap/${token}`,
+				`https://vite-jai-faim.herokuapp.com/orders/recap/${token}`,
 				requestOptions
 			)
 			const formatedData = await data.json()
-			// console.log('[MoodScreen] data fetched: ', formatedData)
 
 			if (formatedData) {
 				const { result, message, order } = formatedData
@@ -112,14 +109,13 @@ function Mood(props) {
 					)
 				}
 			}
-		} catch (err) { }
+		} catch (err) {}
 	}
 
 	var checkOrNot = () => {
 		if (check) {
 			getFromFavorites()
-		}
-		else {
+		} else {
 			getTheSupriseMeal('getSupriseMeal')
 		}
 	}

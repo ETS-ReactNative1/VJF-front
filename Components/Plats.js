@@ -12,9 +12,8 @@ function Plats(props) {
 
 	useEffect(() => {
 		async function loadOrders() {
-
 			var rawResponse = await fetch(
-				`https://vitejaifaim-master-i57witqbae0.herokuapp.com/users/history/${token}`
+				`https://vite-jai-faim.herokuapp.com/users/history/${token}`
 			)
 			var response = await rawResponse.json()
 
@@ -28,14 +27,21 @@ function Plats(props) {
 	return (
 		<View style={styles.container}>
 			{ordersHistory.map((order, j) => (
-				< View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 25, marginBottom: 25 }} key={j} >
+				<View
+					style={{
+						flexDirection: 'row',
+						justifyContent: 'space-between',
+						marginTop: 25,
+						marginBottom: 25,
+					}}
+					key={j}
+				>
 					<Text>{new Date(order.date).toLocaleDateString()}</Text>
 					<Text>{order.mealName}</Text>
 					<HeartFav mealId={order.mealId} />
-				</View >
-			))
-			}
-		</View >
+				</View>
+			))}
+		</View>
 	)
 }
 

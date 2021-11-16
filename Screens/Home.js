@@ -40,14 +40,14 @@ const Home = props => {
 				body: JSON.stringify(dataToUpdate),
 			}
 			const data = await fetch(
-				`https://vitejaifaim-master-i57witqbae0.herokuapp.com/users/update-me/${token}`,
+				`https://vite-jai-faim.herokuapp.com/users/update-me/${token}`,
 				requestOptions
 			)
 			const result = await data.json()
 			props.navigation.navigate('Mood', {
 				screen: 'Mood',
 			})
-		} catch (err) { }
+		} catch (err) {}
 	}
 
 	return (

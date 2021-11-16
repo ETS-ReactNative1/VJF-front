@@ -18,15 +18,12 @@ const TimeToPay = props => {
 	const [order, setOrder] = useState({})
 	const { confirmPayment, loading } = useConfirmPayment()
 	const [cardDetails, setCardDetails] = useState()
-	const API_URL = 'https://vitejaifaim-master-i57witqbae0.herokuapp.com'
+	const API_URL = 'https://vite-jai-faim.herokuapp.com'
 
 	const fetchPaymentIntentClientSecret = async () => {
-		const data = await fetch(
-			`https://vitejaifaim-master-i57witqbae0.herokuapp.com/orders/update-order/${props.order}`,
-			{
-				method: 'PUT',
-			}
-		)
+		const data = await fetch(`${API_URL}/orders/update-order/${props.order}`, {
+			method: 'PUT',
+		})
 		const reponse = await data.json()
 
 		const response = await fetch(`${API_URL}/orders/payment`, {
@@ -52,12 +49,6 @@ const TimeToPay = props => {
 		const { paymentIntent, error } = await confirmPayment(clientSecret, {
 			type: 'Card',
 		})
-
-		if (error) {
-			console.log('Payment confirmation error', error)
-		} else if (paymentIntent) {
-			console.log('Payment status:', paymentIntent.status)
-		}
 
 		if (cardDetails) {
 			props.navigation.navigate('Livraison', {

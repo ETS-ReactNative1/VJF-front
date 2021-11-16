@@ -4,7 +4,6 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { connect } from 'react-redux'
 
 function HeartFav(props) {
-
 	const [isFaved, setIsFaved] = useState(false)
 	const addToFavorite = async () => {
 		setIsFaved(true)
@@ -16,7 +15,7 @@ function HeartFav(props) {
 			const token = props.token
 			const mealId = props.mealId
 			const data = await fetch(
-				`https://vitejaifaim-master-i57witqbae0.herokuapp.com/users/favorites`,
+				`https://vite-jai-faim.herokuapp.com/users/favorites`,
 				{
 					method: 'POST',
 					headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -24,8 +23,7 @@ function HeartFav(props) {
 				}
 			)
 			const result = await data.json()
-		} catch (err) {
-		}
+		} catch (err) {}
 	}
 
 	if (isFaved == true) {
@@ -35,9 +33,14 @@ function HeartFav(props) {
 	}
 
 	return (
-		<View >
-			<MaterialCommunityIcons style={heartPlusColor} name="heart-plus" size={24} onPress={() => addToFavorite('ajout fav')} />
-		</View >
+		<View>
+			<MaterialCommunityIcons
+				style={heartPlusColor}
+				name="heart-plus"
+				size={24}
+				onPress={() => addToFavorite('ajout fav')}
+			/>
+		</View>
 	)
 }
 

@@ -31,7 +31,7 @@ const LastOrderScreen = props => {
 		if (choice === 'good') {
 			try {
 				const data = await fetch(
-					`https://vitejaifaim-master-i57witqbae0.herokuapp.com/users/favorites`,
+					`https://vite-jai-faim.herokuapp.com/users/favorites`,
 					{
 						method: 'POST',
 						headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -45,7 +45,7 @@ const LastOrderScreen = props => {
 		} else if (choice === 'bad') {
 			try {
 				const data = await fetch(
-					`https://vitejaifaim-master-i57witqbae0.herokuapp.com/users/blacklist/${token}`,
+					`https://vite-jai-faim.herokuapp.com/users/blacklist/${token}`,
 					{
 						method: 'PUT',
 						headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -53,7 +53,6 @@ const LastOrderScreen = props => {
 					}
 				)
 				const result = await data.json()
-				// console.log(result)
 			} catch (err) {
 				console.log(err.message)
 			}
@@ -72,45 +71,43 @@ const LastOrderScreen = props => {
 				hasOrder={hasOrder}
 				setHasOrder={setHasOrder}
 			/>
-			{
-				!voted && hasOrder && (
-					<View>
-						<Text h4 style={styles.text}>
-							Qu'en avez vous pensé ?
-						</Text>
-						<View
-							style={{
-								display: 'flex',
-								flexDirection: 'row',
-								justifyContent: 'space-evenly',
-								marginTop: 20,
-							}}
-						>
-							<TouchableOpacity onPress={() => handleThumbClick('bad')}>
-								<Image
-									style={styles.tinyLogo}
-									source={require('../assets/thumbdown.png')}
-								/>
-							</TouchableOpacity>
-							<TouchableOpacity onPress={() => handleThumbClick('good')}>
-								<Image
-									style={styles.tinyLogo}
-									source={require('../assets/thumbup.png')}
-									onPress={() => handleThumbClick('good')}
-								/>
-							</TouchableOpacity>
-						</View>
-						<KeyboardAvoidingView
-							behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-						>
-							<Input
-								placeholder="Ajoutez un commentaire"
-								style={{ marginTop: 40, marginHorizontal: 10 }}
+			{!voted && hasOrder && (
+				<View>
+					<Text h4 style={styles.text}>
+						Qu'en avez vous pensé ?
+					</Text>
+					<View
+						style={{
+							display: 'flex',
+							flexDirection: 'row',
+							justifyContent: 'space-evenly',
+							marginTop: 20,
+						}}
+					>
+						<TouchableOpacity onPress={() => handleThumbClick('bad')}>
+							<Image
+								style={styles.tinyLogo}
+								source={require('../assets/thumbdown.png')}
 							/>
-						</KeyboardAvoidingView>
+						</TouchableOpacity>
+						<TouchableOpacity onPress={() => handleThumbClick('good')}>
+							<Image
+								style={styles.tinyLogo}
+								source={require('../assets/thumbup.png')}
+								onPress={() => handleThumbClick('good')}
+							/>
+						</TouchableOpacity>
 					</View>
-				)
-			}
+					<KeyboardAvoidingView
+						behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+					>
+						<Input
+							placeholder="Ajoutez un commentaire"
+							style={{ marginTop: 40, marginHorizontal: 10 }}
+						/>
+					</KeyboardAvoidingView>
+				</View>
+			)}
 			<Overlay
 				isVisible={overlay}
 				onBackdropPress={() => setOverlay(false)} // REMOVE FOR PRODUCTION
@@ -129,7 +126,7 @@ const LastOrderScreen = props => {
 					<Text>Vous ne recevrez plus ce plat</Text>
 				)}
 			</Overlay>
-		</View >
+		</View>
 	)
 }
 
