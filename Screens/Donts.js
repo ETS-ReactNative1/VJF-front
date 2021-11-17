@@ -36,7 +36,7 @@ function Donts(props) {
 		}
 
 		loadDonts()
-	})
+	}, [])
 
 	if (dontExists) {
 		var showUserDonts = userDonts.map((dont, k) => {
