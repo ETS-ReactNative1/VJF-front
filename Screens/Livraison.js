@@ -5,8 +5,8 @@ import TopBar from '../Components/TopBar'
 import { useState, useEffect } from 'react'
 import LottieView from 'lottie-react-native'
 import CountDown from 'react-native-countdown-component'
-import { LogBox } from 'react-native';
-LogBox.ignoreAllLogs(); //Ignore all log notifications
+import { LogBox } from 'react-native'
+LogBox.ignoreAllLogs() //Ignore all log notifications
 
 function Livraison(props) {
 	const [start, setStart] = useState(true) //const use to start the delivery process
@@ -194,6 +194,7 @@ function Livraison(props) {
 		showscreen = order
 		if (seconds > 0) {
 			setTimeout(() => setSeconds(seconds - 1), 1000)
+			console.log('seconds ORDER : ', seconds)
 		} else {
 			setCommandRender('preparation')
 			setSeconds(10)
@@ -204,6 +205,7 @@ function Livraison(props) {
 		showscreen = preparation
 		if (seconds > 0) {
 			setTimeout(() => setSeconds(seconds - 1), 1000)
+			console.log('seconds PREP : ', seconds)
 		} else {
 			setCommandRender('livraison')
 			setSeconds(10)
@@ -214,6 +216,7 @@ function Livraison(props) {
 		showscreen = livraison
 		if (seconds > 0) {
 			setTimeout(() => setSeconds(seconds - 1), 1000)
+			console.log('seconds LIVR : ', seconds)
 		} else {
 			setCommandRender('done')
 			setSeconds(10)
