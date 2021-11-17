@@ -20,6 +20,7 @@ function UserPage(props) {
 				)
 				var response = await rawResponse.json()
 				setUser(response.userInfo)
+				setDiet(response.userInfo.regimeAlim)
 			} catch (err) {
 				console.log(err)
 			}
