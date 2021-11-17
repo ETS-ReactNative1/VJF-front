@@ -136,8 +136,6 @@ si ces conditions sont remplies allergyExist passe a true*/
 				method: 'DELETE',
 			}
 		)
-
-		// var response = await rawResponse.json()
 	}
 
 	async function handleAllergies(boolean) {

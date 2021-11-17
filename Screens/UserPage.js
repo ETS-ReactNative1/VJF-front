@@ -4,8 +4,6 @@ import { StyleSheet, ScrollView } from 'react-native'
 import { Button, Text, Card, Overlay } from 'react-native-elements'
 import { Ionicons } from '@expo/vector-icons'
 import { connect } from 'react-redux'
-import { Input } from 'react-native-elements/dist/input/Input'
-import MyCheckbox from '../Components/Checkbox'
 import DietRadios from '../Components/MyRadio'
 
 function UserPage(props) {
@@ -27,7 +25,7 @@ function UserPage(props) {
 			}
 		}
 		loadUser()
-	})
+	}, [])
 
 	useEffect(() => {
 		const updateDiet = async () => {

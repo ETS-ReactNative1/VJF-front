@@ -24,7 +24,6 @@ function Favorites(props) {
 				setFavExists(true)
 			}
 		}
-
 		loadFavorites()
 	}, [isFocused])
 
@@ -80,7 +79,7 @@ function Favorites(props) {
 		)
 		var response = await rawResponse.json()
 
-		if (response.favorites.favorites.length == 0) {
+		if (response.favorites.length == 0) {
 			setFavExists(false)
 		}
 	}
