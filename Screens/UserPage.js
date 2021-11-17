@@ -120,7 +120,7 @@ function UserPage(props) {
 					{' '}
 					Régime alimentaire:
 				</Card.Title>
-				<Text>{user.regimeAlim} </Text>
+				<Text>{diet} </Text>
 				<Button
 					type="clear"
 					onPress={handleDiet}
