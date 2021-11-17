@@ -27,7 +27,13 @@ function UserPage(props) {
 		loadUser()
 	}, [])
 
-	useEffect(() => {
+	const handleDiet = () => {
+		setOverlayVisible(true)
+	}
+
+	const showUpdatedDiet = () => {
+		setDiet(props.diet)
+		setOverlayVisible(false)
 		const updateDiet = async () => {
 			try {
 				const dataToSend = {
@@ -50,10 +56,6 @@ function UserPage(props) {
 			}
 		}
 		updateDiet()
-	})
-
-	const handleDiet = () => {
-		setOverlayVisible(true)
 	}
 
 	return (
@@ -127,7 +129,7 @@ function UserPage(props) {
 			</Card>
 			<Overlay
 				isVisible={overlayVisible}
-				onBackdropPress={() => setOverlayVisible(false)}
+				onBackdropPress={showUpdatedDiet}
 				overlayStyle={{
 					width: '90%',
 					marginTop: 60,
