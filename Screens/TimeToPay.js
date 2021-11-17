@@ -13,6 +13,7 @@ import {
 	useStripe,
 	useConfirmPayment,
 } from '@stripe/stripe-react-native'
+import { StripeProvider } from '@stripe/stripe-react-native'
 
 const TimeToPay = props => {
 	const [order, setOrder] = useState({})
@@ -58,44 +59,50 @@ const TimeToPay = props => {
 	}
 
 	return (
-		<KeyboardAwareScrollView style={styles.container}>
-			<TopBar navigation={props.navigation} />
-			<Text h3 style={styles.text}>
-				Récapitulatif
-			</Text>
-			<OrderRecap />
-			<Address />
+		<StripeProvider
+			publishableKey="pk_test_51JrTrKGYLeZVv03J8ZnXBOOpJYjTSpbRwRpsDc87euQ5gniEbZ1RbxmqgQkpZ7OCq2igW25TR1rykbn2BsF26obr00vlt5uXhp"
+			urlScheme="your-url-scheme" // required for 3D Secure and bank redirects
+			merchantIdentifier="merchant.com.{{ YOUR_APP_NAME }}" // required for Apple Pay
+		>
+			<KeyboardAwareScrollView style={styles.container}>
+				<TopBar navigation={props.navigation} />
+				<Text h3 style={styles.text}>
+					Récapitulatif
+				</Text>
+				<OrderRecap />
+				<Address />
 
-			<CardField
-				postalCodeEnabled={true}
-				placeholder={{
-					number: '4242 4242 4242 4242',
-				}}
-				cardStyle={{
-					backgroundColor: '#FFFFFF',
-					textColor: '#000000',
-					alignSelf: '100%',
-				}}
-				style={{
-					width: '92%',
-					height: 150,
-					marginVertical: 15,
-					display: 'flex',
-					flexDirection: 'column',
-					alignItems: 'center',
-					justifyContent: 'center',
-					alignSelf: 'center',
-				}}
-				onCardChange={cardDetails => {
-					setCardDetails(cardDetails)
-				}}
-			/>
-			<NextButtonFullSize
-				title="PAYER"
-				onPress={handlePayPress}
-				disabled={loading}
-			/>
-		</KeyboardAwareScrollView>
+				<CardField
+					postalCodeEnabled={true}
+					placeholder={{
+						number: '4242 4242 4242 4242',
+					}}
+					cardStyle={{
+						backgroundColor: '#FFFFFF',
+						textColor: '#000000',
+						alignSelf: '100%',
+					}}
+					style={{
+						width: '92%',
+						height: 150,
+						marginVertical: 15,
+						display: 'flex',
+						flexDirection: 'column',
+						alignItems: 'center',
+						justifyContent: 'center',
+						alignSelf: 'center',
+					}}
+					onCardChange={cardDetails => {
+						setCardDetails(cardDetails)
+					}}
+				/>
+				<NextButtonFullSize
+					title="PAYER"
+					onPress={handlePayPress}
+					disabled={loading}
+				/>
+			</KeyboardAwareScrollView>
+		</StripeProvider>
 	)
 }
 

@@ -34,11 +34,10 @@ function Donts(props) {
 				setDontExists(true)
 			}
 		}
-
 		loadDonts()
 	}, [])
 
-	if (dontExists) {
+	if (userDonts.length > 0) {
 		var showUserDonts = userDonts.map((dont, k) => {
 			return (
 				<View
@@ -97,6 +96,7 @@ function Donts(props) {
 						body: `dont=${dont}`,
 					}
 				)
+				setUserDonts(prevDonts => [...prevDonts, dont])
 			}
 		} catch (err) {
 			console.log(err)
@@ -125,12 +125,13 @@ function Donts(props) {
 		if (response.donts.length == 0) {
 			setDontExists(false)
 		}
+		setUserDonts(response.donts)
 	}
 
 	return (
 		<View style={styles.container}>
 			<TopBar navigation={props.navigation} />
-			<ScrollView>
+			<KeyboardAwareScrollView>
 				<Text
 					h2
 					style={{ color: '#F2A902', textAlign: 'center', marginTop: '4%' }}
@@ -140,7 +141,7 @@ function Donts(props) {
 				<ScrollView style={styles.userDonts}>{showUserDonts}</ScrollView>
 				<View style={styles.container}>
 					<Text h4 style={styles.sectionTitle}>
-						Je n'aime pas du tout :
+						Ajouter un ingrédient :
 					</Text>
 					<View style={styles.ingredients}>
 						<KeyboardAvoidingView
@@ -163,7 +164,7 @@ function Donts(props) {
 						</KeyboardAvoidingView>
 					</View>
 				</View>
-			</ScrollView>
+			</KeyboardAwareScrollView>
 		</View>
 	)
 }
